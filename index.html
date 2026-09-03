@@ -1,741 +1,785 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ERAS Generator</title>
+  <title>Genshin Generator</title>
 
-<style>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    min-height: 100vh;
-    background: #F6C99F;
-    color: #3A2920;
-    font-family: 'Montserrat', sans-serif;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 30px 15px;
-}
-
-.container {
-    width: 100%;
-    max-width: 620px;
-    text-align: center;
-}
-
-
-/* =========================
-   TITOLO
-========================= */
-
-.header {
-    margin-bottom: 32px;
-}
-
-.subtitle {
-    font-size: 12px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    opacity: .55;
-    margin-bottom: 10px;
-}
-
-h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(48px, 12vw, 76px);
-    font-weight: 600;
-    letter-spacing: 3px;
-    line-height: .9;
-}
-
-.header-line {
-    width: 70px;
-    height: 2px;
-    background: rgba(58, 41, 32, .45);
-    margin: 20px auto 0;
-}
-
-
-/* =========================
-   GENERATORE
-========================= */
-
-.generator {
-    background: rgba(255, 255, 255, .22);
-    border: 1px solid rgba(255, 255, 255, .45);
-    border-radius: 28px;
-    padding: 32px 24px;
-
-    box-shadow:
-        0 20px 50px rgba(90, 55, 30, .15);
-
-    backdrop-filter: blur(10px);
-}
-
-
-/* =========================
-   CARDS NOMI
-========================= */
-
-.card {
-    background: white;
-    border-radius: 18px;
-    padding: 25px 15px;
-    margin-bottom: 15px;
-
-    box-shadow:
-        0 8px 20px rgba(90, 55, 30, .10);
-
-    transition:
-        transform .25s ease,
-        opacity .25s ease;
-}
-
-.name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(38px, 9vw, 52px);
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: #3A2920;
-}
-
-
-/* =========================
-   AZIONE
-========================= */
-
-.action {
-    padding: 12px 0;
-
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-style: italic;
-
-    color: #5A4030;
-}
-
-.connector {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-
-    color: #8B6B58;
-
-    margin: -3px 0 9px;
-}
-
-
-/* =========================
-   BOTTONE
-========================= */
-
-.generate-btn {
-    width: 100%;
-    margin-top: 18px;
-    padding: 20px;
-
-    border-radius: 16px;
-    border: none;
-
-    background: #3A2920;
-    color: white;
-
-    font-family: 'Montserrat', sans-serif;
-
-    font-size: 13px;
-    font-weight: 700;
-
-    letter-spacing: 3px;
-
-    cursor: pointer;
-
-    transition: all .2s ease;
-
-    box-shadow:
-        0 8px 18px rgba(58, 41, 32, .20);
-}
-
-.generate-btn:hover {
-    transform: translateY(-2px);
-}
-
-.generate-btn:active {
-    transform: scale(.97);
-}
-
-.generate-btn:disabled {
-    opacity: .55;
-    cursor: default;
-}
-
-
-/* =========================
-   ANIMAZIONE
-========================= */
-
-.rolling {
-    animation: shake .12s infinite alternate;
-    opacity: .45;
-}
-
-@keyframes shake {
-
-    from {
-        transform: translateY(-2px);
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-
-    to {
-        transform: translateY(2px);
-    }
-
-}
-
-
-/* =========================
-   CRONOLOGIA
-========================= */
-
-.history {
-    margin-top: 30px;
-    text-align: left;
-}
-
-.history-title {
-    text-align: center;
-
-    font-size: 10px;
-
-    letter-spacing: 4px;
-
-    text-transform: uppercase;
-
-    color: #6B4D3B;
-
-    margin-bottom: 15px;
-}
-
-.history-item {
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 20px;
-
-    padding: 13px 5px;
-
-    border-bottom:
-        1px solid rgba(58, 41, 32, .15);
-
-    color: #4B3427;
-
-    text-align: center;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer {
-    margin-top: 25px;
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-    color: #6B4D3B;
-
-    opacity: .55;
-
-    text-transform: uppercase;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 400px) {
 
     body {
-        padding: 25px 12px;
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #ff8a3d, #e93636, #9e1f38);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 25px 15px;
+      color: #2d1515;
     }
 
-    .generator {
-        padding: 25px 15px;
+    .container {
+      width: 100%;
+      max-width: 650px;
+      background: rgba(255, 248, 241, 0.96);
+      border-radius: 28px;
+      padding: 35px 25px;
+      box-shadow: 0 15px 45px rgba(60, 10, 10, 0.35);
+      text-align: center;
     }
 
-    .card {
-        padding: 21px 10px;
+    .subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: 17px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+      color: #9e3434;
     }
 
-    .action {
-        font-size: 26px;
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(32px, 9vw, 58px);
+      letter-spacing: 3px;
+      color: #7d202d;
+      margin-bottom: 12px;
     }
 
-}
+    .description {
+      font-size: 13px;
+      color: #744c4c;
+      margin-bottom: 28px;
+    }
 
-</style>
+    .generate-btn {
+      width: 100%;
+      border: none;
+      border-radius: 18px;
+      padding: 18px 20px;
+      background: linear-gradient(135deg, #d93434, #a91e35);
+      color: white;
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(150, 25, 35, 0.3);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      margin-bottom: 25px;
+    }
+
+    .generate-btn:active {
+      transform: scale(0.97);
+      box-shadow: 0 4px 10px rgba(150, 25, 35, 0.3);
+    }
+
+    .results {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .result-card {
+      background: white;
+      border-radius: 17px;
+      padding: 15px 18px;
+      box-shadow: 0 4px 12px rgba(80, 20, 20, 0.12);
+      text-align: left;
+      border-left: 5px solid #d93434;
+      transition: transform 0.2s ease;
+    }
+
+    .result-card.show {
+      animation: appear 0.4s ease;
+    }
+
+    .label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #a84949;
+      margin-bottom: 5px;
+    }
+
+    .name {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(18px, 5vw, 25px);
+      font-weight: 600;
+      color: #351818;
+      word-break: break-word;
+    }
+
+    .empty {
+      opacity: 0.55;
+    }
+
+    .footer {
+      margin-top: 24px;
+      font-size: 10px;
+      color: #9b7373;
+      letter-spacing: 1px;
+    }
+
+    @keyframes appear {
+      0% {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 15px 10px;
+      }
+
+      .container {
+        padding: 28px 17px;
+        border-radius: 23px;
+      }
+
+      h1 {
+        letter-spacing: 1px;
+      }
+
+      .generate-btn {
+        padding: 17px 15px;
+      }
+
+      .result-card {
+        padding: 13px 15px;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
-<div class="container">
+  <main class="container">
 
+    <div class="subtitle">the</div>
+    <h1>GENSHIN GENERATOR</h1>
 
-    <!-- TITOLO -->
+    <p class="description">
+      Genera casualmente un nome per ogni categoria
+    </p>
 
-    <div class="header">
+    <button class="generate-btn" onclick="generateAll()">
+      GENERA
+    </button>
 
-        <div class="subtitle">
-            the
-        </div>
+    <section class="results">
 
-        <h1>
-            ERAS GENERATOR
-        </h1>
+      <div class="result-card" id="card-boss">
+        <div class="label">Boss</div>
+        <div class="name empty" id="boss">—</div>
+      </div>
 
-        <div class="header-line"></div>
+      <div class="result-card" id="card-matteo">
+        <div class="label">Matteo</div>
+        <div class="name empty" id="matteo">—</div>
+      </div>
 
-    </div>
+      <div class="result-card" id="card-susi">
+        <div class="label">Susi</div>
+        <div class="name empty" id="susi">—</div>
+      </div>
 
+      <div class="result-card" id="card-giulia">
+        <div class="label">Giulia</div>
+        <div class="name empty" id="giulia">—</div>
+      </div>
 
-    <!-- GENERATORE -->
+      <div class="result-card" id="card-extra">
+        <div class="label">Extra</div>
+        <div class="name empty" id="extra">—</div>
+      </div>
 
-    <div class="generator">
-
-
-        <!-- PERSONA 1 -->
-
-        <div class="card">
-
-            <div id="name1" class="name">
-                —
-            </div>
-
-        </div>
-
-
-        <!-- AZIONE -->
-
-        <div id="action" class="action">
-            Premi genera
-        </div>
-
-
-        <!-- PERSONA 2 -->
-
-        <div class="card">
-
-            <div id="name2" class="name">
-                —
-            </div>
-
-        </div>
-
-
-        <!-- DIVISORE -->
-
-        <div id="connector" class="connector">
-            &nbsp;
-        </div>
-
-
-        <!-- PERSONA 3 -->
-
-        <div class="card">
-
-            <div id="name3" class="name">
-                —
-            </div>
-
-        </div>
-
-
-        <!-- BOTTONE -->
-
-        <button
-            id="generateBtn"
-            class="generate-btn"
-            onclick="generate()"
-        >
-            🎲 &nbsp; GENERA
-        </button>
-
-    </div>
-
-
-    <!-- CRONOLOGIA -->
-
-    <div class="history">
-
-        <div class="history-title">
-            ultime combinazioni
-        </div>
-
-        <div id="historyList"></div>
-
-    </div>
-
-
-    <!-- FOOTER -->
+    </section>
 
     <div class="footer">
-        eras generator
+      GENSHIN GENERATOR
     </div>
 
-</div>
+  </main>
 
 
-<script>
+  <script>
 
+    // =========================
+    // BOSS
+    // =========================
 
-/* =========================
-   NOMI
-========================= */
-
-const names = [
-
-    "Kitty",
-    "Keira",
-    "Gaia",
-    "Amos",
-    "Xenia",
-    "Naomi",
-    "Roman",
-    "Reli",
-    "Cami",
-    "Nimue",
-    "Lola",
-    "Manu",
-    "Flora",
-    "Margot",
-    "Joji",
-    "Reze",
-    "Gabriele",
-    "Hachi",
-    "Damiano",
-    "Mattia",
-    "Isabel",
-    "Edoardo",
-    "Rachele",
-    "Adrian",
-    "Nico",
-    "Chanel",
-    "Cleo",
-    "Axel",
-    "Elijah",
-    "Memi",
-    "Han",
-    "Yuli",
-    "Jonny",
-    "Nezha",
-    "Billie",
-    "Sofi",
-    "Yuta",
-    "Sophie",
-    "Soleil",
-    "Nilufar",
-    "Eren",
-    "Leon",
-    "Ren",
-    "Larissa",
-    "Riccardo",
-    "Alessandro",
-    "Matilde",
-    "Romeo"
-
-];
-
-
-/* =========================
-   AZIONI
-========================= */
-
-const actions = [
-
-    {
-        text: "ha tradito",
-        connector: "con"
-    },
-
-    {
-        text: "ha baciato",
-        connector: "con"
-    },
-
-    {
-        text: "ha insultato",
-        connector: "con"
-    },
-
-    {
-        text: "ha parlato male di",
-        connector: "di/con"
-    },
-
-    {
-        text: "ha fatto le corna",
-        connector: "a"
-    },
-
-    {
-        text: "ha indirettato",
-        connector: "con"
-    }
-
-];
-
-
-/* =========================
-   CRONOLOGIA
-========================= */
-
-let history = [];
-
-
-/* =========================
-   ESTRAE 3 NOMI DIVERSI
-========================= */
-
-function getThreeDifferentNames() {
-
-    const shuffled = [...names];
-
-    for (
-        let i = shuffled.length - 1;
-        i > 0;
-        i--
-    ) {
-
-        const j =
-            Math.floor(
-                Math.random() * (i + 1)
-            );
-
-        [
-            shuffled[i],
-            shuffled[j]
-        ] = [
-            shuffled[j],
-            shuffled[i]
-        ];
-
-    }
-
-    return [
-        shuffled[0],
-        shuffled[1],
-        shuffled[2]
+    const boss = [
+      "Anemo Hypostasis",
+      "Electro Hypostasis",
+      "Geo Hypostasis",
+      "Cryo Hypostasis",
+      "Pyro Regisvine",
+      "Cryo Regisvine",
+      "Oceanid",
+      "Primo Geovishap",
+      "Maguu Kenki",
+      "Perpetual Mechanical Array",
+      "Pyro Hypostasis",
+      "Hydro Hypostasis",
+      "Golden Wolflord",
+      "Ruin Serpent",
+      "Jadeplume Terrorshroom",
+      "Electro Regisvine",
+      "Aeonblight Drake",
+      "Algorithm of Semi-Intransient Matrix of Overseer Network",
+      "Dendro Hypostasis",
+      "Setekh Wenut",
+      "Iniquitous Baptist",
+      "Icewind Suite",
+      "Emperor of Fire and Iron",
+      "Millennial Pearl Seahorse",
+      "Prototype Cal. Breguet",
+      "All-Devouring Narwhal",
+      "Solitary Suanni",
+      "Hydro Tulpa",
+      "Legatus Golem",
+      "Guardian of Apep's Oasis",
+      "Tenebrous Papilla",
+      "Secret Source Automaton: Configuration Device",
+      "Secret Source Automaton: Overseer Device",
+      "Wayward Hermetic Spiritspeaker",
+      "Holawaqa Ngoubou",
+      "Kongamato",
+      "Lava Dragon Statue",
+      "Frostnight Herra",
+      "Coral Defenders",
+      "The Game Before the Gate",
+      "The Knave",
+      "Stormterror Dvalin",
+      "Andrius",
+      "Childe",
+      "Azhdaha",
+      "La Signora",
+      "Magatsu Mitake Narukami no Mikoto",
+      "Everlasting Lord of Arcane Wisdom",
+      "Lord of Eroded Primal Fire",
+      "Exalted Master of the Heretical Path",
+      "Heretic of the False Moon"
     ];
 
-}
 
+    // =========================
+    // MATTEO
+    // =========================
 
-/* =========================
-   AZIONE CASUALE
-========================= */
-
-function randomAction() {
-
-    return actions[
-        Math.floor(
-            Math.random() * actions.length
-        )
+    const matteo = [
+      "Aether",
+      "Aino",
+      "Albedo",
+      "Alhaitham",
+      "Aloy",
+      "Amber",
+      "Arlecchino",
+      "Barbara",
+      "Beidou",
+      "Bennett",
+      "Candace",
+      "Charlotte",
+      "Chevreuse",
+      "Chiori",
+      "Chongyun",
+      "Citlali",
+      "Clorinde",
+      "Collei",
+      "Columbina",
+      "Cyno",
+      "Dahlia",
+      "Dehya",
+      "Diluc",
+      "Diona",
+      "Dori",
+      "Durin",
+      "Faruzan",
+      "Fischl",
+      "Flins",
+      "Freminet",
+      "Furina",
+      "Gaming",
+      "Ganyu",
+      "Gorou",
+      "Hu Tao",
+      "Iansan",
+      "Ifa",
+      "Illuga",
+      "Ineffa",
+      "Jahoda",
+      "Jean",
+      "Kachina",
+      "Kaedehara Kazuha",
+      "Kaeya",
+      "Kamisato Ayaka",
+      "Kamisato Ayato",
+      "Kaveh",
+      "Keqing",
+      "Kirara",
+      "Klee",
+      "Kujou Sara",
+      "Kuki Shinobu",
+      "Lan Yan",
+      "Lauma",
+      "Layla",
+      "Linnea",
+      "Lisa",
+      "Lynette",
+      "Lyney",
+      "Mavuika",
+      "Manekin",
+      "Manekina",
+      "Mika",
+      "Mona",
+      "Mualani",
+      "Nahida",
+      "Navia",
+      "Nefer",
+      "Neuvillette",
+      "Nilou",
+      "Ningguang",
+      "Noelle",
+      "Ororon",
+      "Prune",
+      "Qiqi",
+      "Raiden Shogun",
+      "Razor",
+      "Rosaria",
+      "Sangonomiya Kokomi",
+      "Sayu",
+      "Sethos",
+      "Shenhe",
+      "Shikanoin Heizou",
+      "Sigewinne",
+      "Skirk",
+      "Sucrose",
+      "Thoma",
+      "Tighnari",
+      "Varesa",
+      "Wanderer",
+      "Wriothesley",
+      "Xiangling",
+      "Xianyun",
+      "Xiao",
+      "Xilonen",
+      "Xingqiu",
+      "Xinyan",
+      "Yae Miko",
+      "Yanfei",
+      "Yaoyao",
+      "Yelan",
+      "Yoimiya",
+      "Yumemizuki Mizuki",
+      "Yun Jin",
+      "Zibai"
     ];
 
-}
 
+    // =========================
+    // SUSI
+    // =========================
 
-/* =========================
-   GENERA
-========================= */
-
-function generate() {
-
-    const button =
-        document.getElementById(
-            "generateBtn"
-        );
-
-    const name1 =
-        document.getElementById(
-            "name1"
-        );
-
-    const name2 =
-        document.getElementById(
-            "name2"
-        );
-
-    const name3 =
-        document.getElementById(
-            "name3"
-        );
-
-    const action =
-        document.getElementById(
-            "action"
-        );
-
-    const connector =
-        document.getElementById(
-            "connector"
-        );
-
-    button.disabled = true;
-
-    const elements = [
-        name1,
-        name2,
-        name3,
-        action,
-        connector
+    const susi = [
+      "Aino",
+      "Albedo",
+      "Aloy",
+      "Amber",
+      "Barbara",
+      "Beidou",
+      "Bennett",
+      "Candace",
+      "Charlotte",
+      "Chasca",
+      "Chevreuse",
+      "Chiori",
+      "Chongyun",
+      "Citlali",
+      "Clorinde",
+      "Collei",
+      "Columbina",
+      "Cyno",
+      "Dahlia",
+      "Dehya",
+      "Diluc",
+      "Diona",
+      "Dori",
+      "Durin",
+      "Escoffier",
+      "Eula",
+      "Faruzan",
+      "Fischl",
+      "Flins",
+      "Freminet",
+      "Furina",
+      "Gaming",
+      "Ganyu",
+      "Gorou",
+      "Hu Tao",
+      "Iansan",
+      "Ifa",
+      "Illuga",
+      "Ineffa",
+      "Jahoda",
+      "Jean",
+      "Kachina",
+      "Kaedehara Kazuha",
+      "Kaeya",
+      "Kamisato Ayaka",
+      "Kaveh",
+      "Keqing",
+      "Kirara",
+      "Kujou Sara",
+      "Kuki Shinobu",
+      "Lan Yan",
+      "Lauma",
+      "Layla",
+      "Linnea",
+      "Lisa",
+      "Lumine",
+      "Lynette",
+      "Lyney",
+      "Mavuika",
+      "Manekin",
+      "Manekina",
+      "Mika",
+      "Mona",
+      "Mualani",
+      "Nahida",
+      "Navia",
+      "Nefer",
+      "Neuvillette",
+      "Nicole",
+      "Nilou",
+      "Ningguang",
+      "Noelle",
+      "Ororon",
+      "Qiqi",
+      "Razor",
+      "Rosaria",
+      "Sangonomiya Kokomi",
+      "Sayu",
+      "Sethos",
+      "Shikanoin Heizou",
+      "Skirk",
+      "Sucrose",
+      "Tartaglia",
+      "Thoma",
+      "Tighnari",
+      "Varka",
+      "Venti",
+      "Wanderer",
+      "Wriothesley",
+      "Xiangling",
+      "Xianyun",
+      "Xiao",
+      "Xilonen",
+      "Xingqiu",
+      "Xinyan",
+      "Yae Miko",
+      "Yanfei",
+      "Yaoyao",
+      "Yelan",
+      "Yumemizuki Mizuki",
+      "Yun Jin",
+      "Zhongli"
     ];
 
-    elements.forEach(
-        element =>
-            element.classList.add(
-                "rolling"
-            )
-    );
 
-    let counter = 0;
+    // =========================
+    // GIULIA
+    // =========================
 
-    const animation =
-        setInterval(() => {
+    const giulia = [
+      "Aether",
+      "Aino",
+      "Albedo",
+      "Alhaitham",
+      "Aloy",
+      "Amber",
+      "Arlecchino",
+      "Barbara",
+      "Beidou",
+      "Bennett",
+      "Candace",
+      "Charlotte",
+      "Chevreuse",
+      "Chongyun",
+      "Citlali",
+      "Collei",
+      "Columbina",
+      "Cyno",
+      "Dahlia",
+      "Dehya",
+      "Diluc",
+      "Diona",
+      "Dori",
+      "Durin",
+      "Emilie",
+      "Eula",
+      "Faruzan",
+      "Fischl",
+      "Flins",
+      "Freminet",
+      "Furina",
+      "Gaming",
+      "Ganyu",
+      "Gorou",
+      "Hu Tao",
+      "Iansan",
+      "Ifa",
+      "Illuga",
+      "Jahoda",
+      "Jean",
+      "Kachina",
+      "Kaedehara Kazuha",
+      "Kaeya",
+      "Kamisato Ayaka",
+      "Kaveh",
+      "Keqing",
+      "Kirara",
+      "Kujou Sara",
+      "Kuki Shinobu",
+      "Lan Yan",
+      "Lauma",
+      "Layla",
+      "Lisa",
+      "Lohen",
+      "Lynette",
+      "Mavuika",
+      "Manekina",
+      "Mika",
+      "Mona",
+      "Mualani",
+      "Nahida",
+      "Navia",
+      "Neuvillette",
+      "Nilou",
+      "Ningguang",
+      "Noelle",
+      "Ororon",
+      "Prune",
+      "Qiqi",
+      "Raiden Shogun",
+      "Razor",
+      "Rosaria",
+      "Sangonomiya Kokomi",
+      "Sayu",
+      "Sethos",
+      "Shenhe",
+      "Shikanoin Heizou",
+      "Skirk",
+      "Sucrose",
+      "Thoma",
+      "Tighnari",
+      "Varesa",
+      "Varka",
+      "Wanderer",
+      "Wriothesley",
+      "Xiangling",
+      "Xiao",
+      "Xingqiu",
+      "Xinyan",
+      "Yae Miko",
+      "Yanfei",
+      "Yaoyao",
+      "Yelan",
+      "Yoimiya",
+      "Yumemizuki Mizuki",
+      "Yun Jin",
+      "Zhongli",
+      "Nicole"
+    ];
 
-            const tempNames =
-                getThreeDifferentNames();
 
-            const tempAction =
-                randomAction();
+    // =========================
+    // EXTRA
+    // =========================
 
-            name1.textContent =
-                tempNames[0];
+    const extra = [
+      "Aether",
+      "Aino",
+      "Albedo",
+      "Alhaitham",
+      "Aloy",
+      "Amber",
+      "Arataki Itto",
+      "Arlecchino",
+      "Baizhu",
+      "Barbara",
+      "Beidou",
+      "Bennett",
+      "Candace",
+      "Charlotte",
+      "Chasca",
+      "Chevreuse",
+      "Chiori",
+      "Chongyun",
+      "Citlali",
+      "Clorinde",
+      "Collei",
+      "Columbina",
+      "Cyno",
+      "Dahlia",
+      "Dehya",
+      "Diluc",
+      "Diona",
+      "Dori",
+      "Durin",
+      "Emilie",
+      "Escoffier",
+      "Eula",
+      "Faruzan",
+      "Fischl",
+      "Flins",
+      "Freminet",
+      "Furina",
+      "Gaming",
+      "Ganyu",
+      "Gorou",
+      "Hu Tao",
+      "Iansan",
+      "Ifa",
+      "Illuga",
+      "Ineffa",
+      "Jahoda",
+      "Jean",
+      "Kachina",
+      "Kaedehara Kazuha",
+      "Kaeya",
+      "Kamisato Ayaka",
+      "Kamisato Ayato",
+      "Kaveh",
+      "Keqing",
+      "Kinich",
+      "Kirara",
+      "Klee",
+      "Kujou Sara",
+      "Kuki Shinobu",
+      "Lan Yan",
+      "Lauma",
+      "Layla",
+      "Linnea",
+      "Lisa",
+      "Lohen",
+      "Lumine",
+      "Lynette",
+      "Lyney",
+      "Mavuika",
+      "Manekin",
+      "Manekina",
+      "Mika",
+      "Mona",
+      "Mualani",
+      "Nahida",
+      "Navia",
+      "Nefer",
+      "Neuvillette",
+      "Nilou",
+      "Ningguang",
+      "Noelle",
+      "Ororon",
+      "Prune",
+      "Qiqi",
+      "Raiden Shogun",
+      "Razor",
+      "Rosaria",
+      "Sangonomiya Kokomi",
+      "Sayu",
+      "Sethos",
+      "Shenhe",
+      "Shikanoin Heizou",
+      "Sigewinne",
+      "Skirk",
+      "Sucrose",
+      "Tartaglia",
+      "Thoma",
+      "Tighnari",
+      "Varesa",
+      "Varka",
+      "Venti",
+      "Wanderer",
+      "Wriothesley",
+      "Xiangling",
+      "Xianyun",
+      "Xiao",
+      "Xilonen",
+      "Xingqiu",
+      "Xinyan",
+      "Yae Miko",
+      "Yanfei",
+      "Yaoyao",
+      "Yelan",
+      "Yoimiya",
+      "Yumemizuki Mizuki",
+      "Yun Jin",
+      "Zhongli",
+      "Zibai",
+      "Nicole"
+    ];
 
-            name2.textContent =
-                tempNames[1];
 
-            name3.textContent =
-                tempNames[2];
+    // =========================
+    // GENERATORE
+    // =========================
 
-            action.textContent =
-                tempAction.text;
-
-            connector.textContent =
-                tempAction.connector;
-
-            counter++;
-
-            if (counter >= 15) {
-
-                clearInterval(animation);
-
-                const finalNames =
-                    getThreeDifferentNames();
-
-                const finalAction =
-                    randomAction();
-
-                name1.textContent =
-                    finalNames[0];
-
-                name2.textContent =
-                    finalNames[1];
-
-                name3.textContent =
-                    finalNames[2];
-
-                action.textContent =
-                    finalAction.text;
-
-                connector.textContent =
-                    finalAction.connector;
-
-                elements.forEach(
-                    element =>
-                        element.classList.remove(
-                            "rolling"
-                        )
-                );
-
-                addToHistory(
-                    finalNames,
-                    finalAction
-                );
-
-                button.disabled = false;
-
-            }
-
-        }, 90);
-
-}
-
-
-/* =========================
-   AGGIUNGE ALLA CRONOLOGIA
-========================= */
-
-function addToHistory(
-    names,
-    action
-) {
-
-    const sentence =
-        `${names[0]} ${action.text} ${names[1]} ${action.connector} ${names[2]}.`;
-
-    history.unshift(
-        sentence
-    );
-
-    if (history.length > 5) {
-        history.pop();
+    function randomName(list) {
+      return list[Math.floor(Math.random() * list.length)];
     }
 
-    const historyList =
-        document.getElementById(
-            "historyList"
-        );
+    function showResult(id, value) {
+      const element = document.getElementById(id);
+      const card = document.getElementById("card-" + id);
 
-    historyList.innerHTML = "";
+      element.textContent = value;
+      element.classList.remove("empty");
 
-    history.forEach(
-        item => {
+      card.classList.remove("show");
 
-            const div =
-                document.createElement(
-                    "div"
-                );
+      // Riavvia l'animazione
+      void card.offsetWidth;
 
-            div.className =
-                "history-item";
+      card.classList.add("show");
+    }
 
-            div.textContent =
-                item;
+    function generateAll() {
 
-            historyList.appendChild(
-                div
-            );
+      // Piccola pausa per dare un effetto di estrazione
+      const button = document.querySelector(".generate-btn");
 
-        }
-    );
+      button.disabled = true;
+      button.textContent = "ESTRAZIONE...";
 
-}
+      setTimeout(() => {
 
-</script>
+        showResult("boss", randomName(boss));
+        showResult("matteo", randomName(matteo));
+        showResult("susi", randomName(susi));
+        showResult("giulia", randomName(giulia));
+        showResult("extra", randomName(extra));
+
+        button.disabled = false;
+        button.textContent = "GENERA";
+
+      }, 450);
+    }
+
+  </script>
 
 </body>
 </html>

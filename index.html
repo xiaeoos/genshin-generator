@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ERAS Generator</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: #F6C99F;
+    color: #3A2920;
+    font-family: 'Montserrat', sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 15px;
+}
+
+.container {
+    width: 100%;
+    max-width: 620px;
+    text-align: center;
+}
+
+
+/* =========================
+   TITOLO
+========================= */
+
+.header {
+    margin-bottom: 32px;
+}
+
+.subtitle {
+    font-size: 12px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    opacity: .55;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 12vw, 76px);
+    font-weight: 600;
+    letter-spacing: 3px;
+    line-height: .9;
+}
+
+.header-line {
+    width: 70px;
+    height: 2px;
+    background: rgba(58, 41, 32, .45);
+    margin: 20px auto 0;
+}
+
+
+/* =========================
+   GENERATORE
+========================= */
+
+.generator {
+    background: rgba(255, 255, 255, .22);
+    border: 1px solid rgba(255, 255, 255, .45);
+    border-radius: 28px;
+    padding: 32px 24px;
+
+    box-shadow:
+        0 20px 50px rgba(90, 55, 30, .15);
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* =========================
+   CARDS NOMI
+========================= */
+
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px 15px;
+    margin-bottom: 15px;
+
+    box-shadow:
+        0 8px 20px rgba(90, 55, 30, .10);
+
+    transition:
+        transform .25s ease,
+        opacity .25s ease;
+}
+
+.name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 9vw, 52px);
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #3A2920;
+}
+
+
+/* =========================
+   AZIONE
+========================= */
+
+.action {
+    padding: 12px 0;
+
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-style: italic;
+
+    color: #5A4030;
+}
+
+.connector {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    color: #8B6B58;
+
+    margin: -3px 0 9px;
+}
+
+
+/* =========================
+   BOTTONE
+========================= */
+
+.generate-btn {
+    width: 100%;
+    margin-top: 18px;
+    padding: 20px;
+
+    border-radius: 16px;
+    border: none;
+
+    background: #3A2920;
+    color: white;
+
+    font-family: 'Montserrat', sans-serif;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition: all .2s ease;
+
+    box-shadow:
+        0 8px 18px rgba(58, 41, 32, .20);
+}
+
+.generate-btn:hover {
+    transform: translateY(-2px);
+}
+
+.generate-btn:active {
+    transform: scale(.97);
+}
+
+.generate-btn:disabled {
+    opacity: .55;
+    cursor: default;
+}
+
+
+/* =========================
+   ANIMAZIONE
+========================= */
+
+.rolling {
+    animation: shake .12s infinite alternate;
+    opacity: .45;
+}
+
+@keyframes shake {
+
+    from {
+        transform: translateY(-2px);
+    }
+
+    to {
+        transform: translateY(2px);
+    }
+
+}
+
+
+/* =========================
+   CRONOLOGIA
+========================= */
+
+.history {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.history-title {
+    text-align: center;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #6B4D3B;
+
+    margin-bottom: 15px;
+}
+
+.history-item {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 20px;
+
+    padding: 13px 5px;
+
+    border-bottom:
+        1px solid rgba(58, 41, 32, .15);
+
+    color: #4B3427;
+
+    text-align: center;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    margin-top: 25px;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #6B4D3B;
+
+    opacity: .55;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 400px) {
+
+    body {
+        padding: 25px 12px;
+    }
+
+    .generator {
+        padding: 25px 15px;
+    }
+
+    .card {
+        padding: 21px 10px;
+    }
+
+    .action {
+        font-size: 26px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- TITOLO -->
+
+    <div class="header">
+
+        <div class="subtitle">
+            the
+        </div>
+
+        <h1>
+            ERAS GENERATOR
+        </h1>
+
+        <div class="header-line"></div>
+
+    </div>
+
+
+    <!-- GENERATORE -->
+
+    <div class="generator">
+
+
+        <!-- PERSONA 1 -->
+
+        <div class="card">
+
+            <div id="name1" class="name">
+                —
+            </div>
+
+        </div>
+
+
+        <!-- AZIONE -->
+
+        <div id="action" class="action">
+            Premi genera
+        </div>
+
+
+        <!-- PERSONA 2 -->
+
+        <div class="card">
+
+            <div id="name2" class="name">
+                —
+            </div>
+
+        </div>
+
+
+        <!-- DIVISORE -->
+
+        <div id="connector" class="connector">
+            &nbsp;
+        </div>
+
+
+        <!-- PERSONA 3 -->
+
+        <div class="card">
+
+            <div id="name3" class="name">
+                —
+            </div>
+
+        </div>
+
+
+        <!-- BOTTONE -->
+
+        <button
+            id="generateBtn"
+            class="generate-btn"
+            onclick="generate()"
+        >
+            🎲 &nbsp; GENERA
+        </button>
+
+    </div>
+
+
+    <!-- CRONOLOGIA -->
+
+    <div class="history">
+
+        <div class="history-title">
+            ultime combinazioni
+        </div>
+
+        <div id="historyList"></div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+        eras generator
+    </div>
+
+</div>
+
+
+<script>
+
+
+/* =========================
+   NOMI
+========================= */
+
+const names = [
+
+    "Kitty",
+    "Keira",
+    "Gaia",
+    "Amos",
+    "Xenia",
+    "Naomi",
+    "Roman",
+    "Reli",
+    "Cami",
+    "Nimue",
+    "Lola",
+    "Manu",
+    "Flora",
+    "Margot",
+    "Joji",
+    "Reze",
+    "Gabriele",
+    "Hachi",
+    "Damiano",
+    "Mattia",
+    "Isabel",
+    "Edoardo",
+    "Rachele",
+    "Adrian",
+    "Nico",
+    "Chanel",
+    "Cleo",
+    "Axel",
+    "Elijah",
+    "Memi",
+    "Han",
+    "Yuli",
+    "Jonny",
+    "Nezha",
+    "Billie",
+    "Sofi",
+    "Yuta",
+    "Sophie",
+    "Soleil",
+    "Nilufar",
+    "Eren",
+    "Leon",
+    "Ren",
+    "Larissa",
+    "Riccardo",
+    "Alessandro",
+    "Matilde",
+    "Romeo"
+
+];
+
+
+/* =========================
+   AZIONI
+========================= */
+
+const actions = [
+
+    {
+        text: "ha tradito",
+        connector: "con"
+    },
+
+    {
+        text: "ha baciato",
+        connector: "con"
+    },
+
+    {
+        text: "ha insultato",
+        connector: "con"
+    },
+
+    {
+        text: "ha parlato male di",
+        connector: "di/con"
+    },
+
+    {
+        text: "ha fatto le corna",
+        connector: "a"
+    },
+
+    {
+        text: "ha indirettato",
+        connector: "con"
+    }
+
+];
+
+
+/* =========================
+   CRONOLOGIA
+========================= */
+
+let history = [];
+
+
+/* =========================
+   ESTRAE 3 NOMI DIVERSI
+========================= */
+
+function getThreeDifferentNames() {
+
+    const shuffled = [...names];
+
+    for (
+        let i = shuffled.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [
+            shuffled[i],
+            shuffled[j]
+        ] = [
+            shuffled[j],
+            shuffled[i]
+        ];
+
+    }
+
+    return [
+        shuffled[0],
+        shuffled[1],
+        shuffled[2]
+    ];
+
+}
+
+
+/* =========================
+   AZIONE CASUALE
+========================= */
+
+function randomAction() {
+
+    return actions[
+        Math.floor(
+            Math.random() * actions.length
+        )
+    ];
+
+}
+
+
+/* =========================
+   GENERA
+========================= */
+
+function generate() {
+
+    const button =
+        document.getElementById(
+            "generateBtn"
+        );
+
+    const name1 =
+        document.getElementById(
+            "name1"
+        );
+
+    const name2 =
+        document.getElementById(
+            "name2"
+        );
+
+    const name3 =
+        document.getElementById(
+            "name3"
+        );
+
+    const action =
+        document.getElementById(
+            "action"
+        );
+
+    const connector =
+        document.getElementById(
+            "connector"
+        );
+
+    button.disabled = true;
+
+    const elements = [
+        name1,
+        name2,
+        name3,
+        action,
+        connector
+    ];
+
+    elements.forEach(
+        element =>
+            element.classList.add(
+                "rolling"
+            )
+    );
+
+    let counter = 0;
+
+    const animation =
+        setInterval(() => {
+
+            const tempNames =
+                getThreeDifferentNames();
+
+            const tempAction =
+                randomAction();
+
+            name1.textContent =
+                tempNames[0];
+
+            name2.textContent =
+                tempNames[1];
+
+            name3.textContent =
+                tempNames[2];
+
+            action.textContent =
+                tempAction.text;
+
+            connector.textContent =
+                tempAction.connector;
+
+            counter++;
+
+            if (counter >= 15) {
+
+                clearInterval(animation);
+
+                const finalNames =
+                    getThreeDifferentNames();
+
+                const finalAction =
+                    randomAction();
+
+                name1.textContent =
+                    finalNames[0];
+
+                name2.textContent =
+                    finalNames[1];
+
+                name3.textContent =
+                    finalNames[2];
+
+                action.textContent =
+                    finalAction.text;
+
+                connector.textContent =
+                    finalAction.connector;
+
+                elements.forEach(
+                    element =>
+                        element.classList.remove(
+                            "rolling"
+                        )
+                );
+
+                addToHistory(
+                    finalNames,
+                    finalAction
+                );
+
+                button.disabled = false;
+
+            }
+
+        }, 90);
+
+}
+
+
+/* =========================
+   AGGIUNGE ALLA CRONOLOGIA
+========================= */
+
+function addToHistory(
+    names,
+    action
+) {
+
+    const sentence =
+        `${names[0]} ${action.text} ${names[1]} ${action.connector} ${names[2]}.`;
+
+    history.unshift(
+        sentence
+    );
+
+    if (history.length > 5) {
+        history.pop();
+    }
+
+    const historyList =
+        document.getElementById(
+            "historyList"
+        );
+
+    historyList.innerHTML = "";
+
+    history.forEach(
+        item => {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+            div.className =
+                "history-item";
+
+            div.textContent =
+                item;
+
+            historyList.appendChild(
+                div
+            );
+
+        }
+    );
+
+}
+
+</script>
+
+</body>
+</html>
